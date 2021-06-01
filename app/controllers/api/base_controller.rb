@@ -41,7 +41,7 @@ class Api::BaseController < ApplicationController
   end
 
   rescue_from Mastodon::RaceConditionError, Seahorse::Client::NetworkingError, Stoplight::Error::RedLight do
-    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
+    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 502
   end
 
   rescue_from Mastodon::RateLimitExceededError do
