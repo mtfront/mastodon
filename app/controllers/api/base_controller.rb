@@ -48,9 +48,9 @@ class Api::BaseController < ApplicationController
     render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 500
   end
 
-  rescue_from Seahorse::Client::NetworkingError do
-    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 501
-  end
+  # rescue_from Seahorse::Client::NetworkingError do
+  #   render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 501
+  # end
 
   rescue_from Stoplight::Error::RedLight do
     render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 502
