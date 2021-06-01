@@ -44,8 +44,8 @@ module Paperclip
       @url_generator.for_as_default(style_name)
     end
 
-    STOPLIGHT_THRESHOLD = 30 # 10
-    STOPLIGHT_COOLDOWN  = 30
+    STOPLIGHT_THRESHOLD = 100 # 10
+    STOPLIGHT_COOLDOWN  = 100
 
     # We overwrite this method to put a circuit breaker around
     # calls to object storage, to stop hitting APIs that are slow
