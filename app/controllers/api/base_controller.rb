@@ -44,16 +44,10 @@ class Api::BaseController < ApplicationController
   #   render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
   # end
 
-  rescue_from Mastodon::RaceConditionError do
-    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 500
-  end
-
-  # rescue_from Seahorse::Client::NetworkingError do
-  #   render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 501
-  # end
-
-  rescue_from Stoplight::Error::RedLight do
-    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 502
+  # Temporarily removed Seahorse::Client::NetworkingError, 
+  # see https://discourse.joinmastodon.org/t/503-error-on-upload-with-s3-by-scaleway/3628/5
+  rescue_from Mastodon::RaceConditionError, Stoplight::Error::RedLight do
+    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
   end
 
   rescue_from Mastodon::RateLimitExceededError do

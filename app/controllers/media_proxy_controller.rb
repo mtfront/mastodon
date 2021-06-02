@@ -21,8 +21,7 @@ class MediaProxyController < ApplicationController
         authorize @media_attachment.status, :show?
         redownload! if @media_attachment.needs_redownload? && !reject_media?
       else
-        
-        raise Mastodon::RateLimitExceededError
+        raise Mastodon::RaceConditionError
       end
     end
 
