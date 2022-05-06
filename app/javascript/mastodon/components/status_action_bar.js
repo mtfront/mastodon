@@ -336,7 +336,8 @@ class StatusActionBar extends ImmutablePureComponent {
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
 
         {shareButton}
-
+        <div className='status__action-bar-button'><IconButton className='bookmark-icon' active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} /></div>
+        
         <div className='status__action-bar-dropdown'>
           <DropdownMenuContainer
             scrollKey={scrollKey}
