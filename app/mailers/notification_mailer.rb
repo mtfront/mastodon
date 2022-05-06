@@ -10,12 +10,13 @@ class NotificationMailer < ApplicationMailer
     @me     = recipient
     @status = notification.target_status
 
-    return unless @me.user.functional? && @status.present?
+    return
+    # return unless @me.user.functional? && @status.present?
 
-    locale_for_account(@me) do
-      thread_by_conversation(@status.conversation)
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
-    end
+    # locale_for_account(@me) do
+    #   thread_by_conversation(@status.conversation)
+    #   mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
+    # end
   end
 
   def follow(recipient, notification)
