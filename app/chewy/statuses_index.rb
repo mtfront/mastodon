@@ -17,6 +17,14 @@ class StatusesIndex < Chewy::Index
         type: 'stemmer',
         language: 'possessive_english',
       },
+      char_filter: {
+        tsconvert: {
+          type: 'stconvert',
+          keep_both: false,
+          delimiter: '#',
+          convert_type: 't2s',
+        },
+      },
     },
 
     analyzer: {
@@ -26,6 +34,7 @@ class StatusesIndex < Chewy::Index
       },
 
       content: {
+        # maybe need ik_max_word for chinese
         tokenizer: 'standard',
         filter: %w(
           lowercase

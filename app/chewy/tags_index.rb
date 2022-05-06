@@ -4,6 +4,7 @@ class TagsIndex < Chewy::Index
   settings index: index_preset(refresh_interval: '30s'), analysis: {
     analyzer: {
       content: {
+        # maybe need ik_max_keyword for chinese
         tokenizer: 'keyword',
         filter: %w(
           word_delimiter_graph
