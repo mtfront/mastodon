@@ -47,12 +47,16 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def follow_request
-    return unless @user.functional?
+  def follow_request(recipient, notification)
+    @me      = recipient
+    @account = notification.from_account
 
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @account.acct)
-    end
+    return
+    # return unless @me.user.functional?
+
+    # locale_for_account(@me) do
+    #   mail to: @me.user.email, subject: I18n.t('notification_mailer.follow_request.subject', name: @account.acct)
+    # end
   end
 
   private
